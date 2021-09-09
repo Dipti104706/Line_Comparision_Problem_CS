@@ -6,25 +6,54 @@ namespace Line_Comparision_Problem_CS
 /// </summary>
     class LineComparision
     {
-        //UC3 for comparing lengths of two lines
-     
-        //Creating distance method to calculate length of a line using two points 
-        //two points are (x1,y1) & (x2,y2)
-        static double distance(int x1,int y1, int x2, int y2)
+        //UC4 for comparing lengths of two lines using oops concept
+        public int x1, y1, x2, y2;
+        public LineComparision()
         {
-            //To evaluate math expression Math method() used 
+            double[] StoreCoords = new double[5];
+            for(int i=1;i<2;i++)
+            {
+                Console.WriteLine("Enter coordinate-x1:");
+                this.x1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter coordinate-y1:");
+                this.y1 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter coordinate-x2:");
+                this.x2 = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter coordinate-y2:");
+                this.y2 = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+
+        public double Length()
+        {
+            // To evaluate math expression Math method() used
             double lineLength = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
             //Round method() used for rounding decimal value up to 2 digit
             double length = Math.Round(lineLength, 2);
             return length;
         }
-        public static void comparingLines(string len1, string len2)
+
+        public void Equal(string line1,string line2)
         {
-            if (len1.CompareTo(len2) > 0)
+            //Using Equals method() to check eqyality of two line 
+            if (double.Equals(line1, line2))
+            {
+                Console.WriteLine("{0} is equals to {1}", line1, line2);
+            }
+            else
+            {
+                Console.WriteLine("{0} is not equal to {1}", line1, line2);
+            }
+        }
+
+        //creating a comparing line method 
+        public void ComparingLines(string line1, string line2)
+        {
+            if (line1.CompareTo(line2) > 0)
             {
                 Console.WriteLine("Line1 is greater than line2");
             }
-            else if (len1.CompareTo(len2) < 0)
+            else if (line1.CompareTo(line2) < 0)
             {
                 Console.WriteLine("Line1 is lesser than line2");
             }
@@ -35,11 +64,15 @@ namespace Line_Comparision_Problem_CS
         }
         static void Main(string[] args)
         {
-            //Initializing two lines(line1,line2) by calling distance method
-            double line1 = LineComparision.distance(3, 4, 4, 3);
-            double line2 = LineComparision.distance(4, 5, 8, 3);
-
-            LineComparision.comparingLines(line1.ToString(), line2.ToString());
+            //creating objects 
+            LineComparision obj1 = new LineComparision();
+            double line1 = obj1.Length();
+            LineComparision obj2 = new LineComparision();
+            double line2 = obj2.Length();
+            Console.WriteLine("Length of the first line"+line1);
+            Console.WriteLine("Length of the secod line" +line2);
+            obj1.Equal(line1.ToString(), line2.ToString());
+            obj1.ComparingLines(line1.ToString(), line2.ToString());
             Console.ReadLine();
         }
     }
